@@ -26,15 +26,32 @@ filterBtn.on("click", function () {
     // Create a filter based in user input
     if (!dateValue == "") {
         var filteredSet = tableData.filter(sighting => sighting.datetime === dateValue);
+    } 
+
+    if (!cityValue == "" && !dateValue == "") {
+        filteredSet = filteredSet.filter(sighting => sighting.city === cityValue);
     } else if (!cityValue == "") {
         var filteredSet = tableData.filter(sighting => sighting.city === cityValue);
+    }
+
+    if (!stateValue == "" && ((!cityValue == "" || !dateValue == ""))) {
+        var filteredSet = filteredSet.filter(sighting => sighting.state === stateValue);
     } else if (!stateValue == "") {
         var filteredSet = tableData.filter(sighting => sighting.state === stateValue);
+    }
+
+    if (!countryValue == "" && ((!cityValue == "" || !dateValue == "" || !stateValue == ""))) {
+        var filteredSet = filteredSet.filter(sighting => sighting.country === countryValue);
     } else if (!countryValue == "") {
         var filteredSet = tableData.filter(sighting => sighting.country === countryValue);
+    }
+    
+    if (!shapeValue == "" && ((!cityValue == "" || !dateValue == "" || !stateValue == "" || !countryValue == ""))) {
+        var filteredSet = tableData.filter(sighting => sighting.shape === shapeValue);
     } else if (!shapeValue == "") {
         var filteredSet = tableData.filter(sighting => sighting.shape === shapeValue);
     }
+
     // Clear existing html in table
     var table = d3.select("tbody");
     table.html("");
