@@ -34,49 +34,14 @@ tableData.forEach(function(sighting) {
 // Select the button
 var filterBtn = d3.select("#filter-btn");
 
-// Select the form
-var text = d3.select("#datetime");
-
-// // Form input change handler
-// text.on("change", function() {
-//     // Prevent page from reloading when you hit enter
-//     d3.event.preventDefault();
-
-//     // Get the user input
-//     var inputElement = d3.select("#datetime");
-//     var inputValue = inputElement.property("value");
-    
-//     // @TODO Add a thing here to verify that date is in right format
-
-//     // Create a date filter based in user input
-//     var dateSet = tableData.filter(sighting => sighting.datetime === inputValue);
-//     console.log(dateSet);
-
-//     // Clear existing html in table
-//     var table = d3.select("tbody");
-//     table.html("");
-
-//     // Print each result in dateSet to table
-//     dateSet.forEach((sighting) => {
-//         var row = table.append("tr");
-//         Object.entries(sighting).forEach(([key, value]) => {
-//             var cell = row.append("td");
-//             cell.text(value);
-//         });
-//     });
-// });
-
 // Form click handler
 
 filterBtn.on("click", function () {
     // Get the user input
-    var inputElement = d3.select("#datetime");
-    var inputValue = inputElement.property("value");
-    
-    // @TODO Add a thing here to verify that date is in right format
+    var datetime = d3.select("#datetime");
+    var dateValue = datetime.property("value");
 
-    // Create a date filter based in user input
-    var dateSet = tableData.filter(sighting => sighting.datetime === inputValue);
+    var dateSet = tableData.filter(sighting => sighting.datetime === dateValue);
     console.log(dateSet);
 
     // Clear existing html in table
