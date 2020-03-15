@@ -31,83 +31,35 @@
         <div class="col-md-12">
           <form>
               <div class="form-row">
-              <ul class="list-group" id="filters">
-                <div class="col">
-                <li class="filter list-group-item">
-                  <label for="date">Enter a Date</label>
+                <div class="form-group">
+                <div class="input-group">
+                  <label for="date">Date</label>
                   <input class="form-control" id="datetime" type="text" placeholder="1/11/2010">
-                </li>
-              </div>
-              <div class="col">
-                <li class="filter list-group-item">
-                  <label for="city">Enter a City</label>
+                  <label for="city">City</label>
                   <input class="form-control" id="city" type="text" placeholder="Fresno">
-                </li>
-              </div>
-              <div class="col">
-                <li class="filter list-group-item">
-                  <label for="state">Enter a State</label>
+                  <label for="state">State</label>
                   <input class="form-control" id="state" type="text" placeholder="CA">
-                </li>
-              </div> 
-              <div class="col">
-                <li class="filter list-group-item">
-                  <label for="country">Enter a Country</label>
+                  <label for="country">Country</label>
                   <input class="form-control" id="country" type="text" placeholder="US">
-                </li>
-              </div>
-              <div class="col">
-                <li class="filter list-group-item">
-                  <label for="shape">Enter a Shape</label>
+                  <label for="shape">UFO Shape</label>
                   <input class="form-control" id="shape" type="text" placeholder="Circle">
-                </li> 
+                  <button id="filter-btn" type="button" class="btn btn-default btn-primary">Search</button>
+                  <button id="reset-btn" type="button" class="btn btn-default btn-light" value="Reset Form">Reset</button> 
+                  <!-- onClick="this.form.reset(); window.location.reload(); -->
+                </div>
               </div>
-              </ul>
-              </div>
+
+
+          
+              
             
-            <button id="filter-btn" type="button" class="btn btn-default">Filter Table</button>
+            
+           
           </form>
         </div>
       </div>
       <div class="row margin-top-50">
-        <div class="col-md-2">
-          <aside class="filters">
-            <div class="panel panel-default">
-              <div class="panel-heading">Filter Search</div>
-              <div class="panel-body">
-                <form>
-                  <div class="form-group">
-                    <ul class="list-group" id="filters">
-                      <li class="filter list-group-item">
-                        <label for="date">Enter a Date</label>
-                        <input class="form-control" id="datetime" type="text" placeholder="1/11/2010">
-                      </li>
-                      <li class="filter list-group-item">
-                        <label for="city">Enter a City</label>
-                        <input class="form-control" id="city" type="text" placeholder="Fresno">
-                      </li>
-                      <li class="filter list-group-item">
-                        <label for="state">Enter a State</label>
-                        <input class="form-control" id="state" type="text" placeholder="CA">
-                      </li>
-                      
-                      <li class="filter list-group-item">
-                        <label for="country">Enter a Country</label>
-                        <input class="form-control" id="country" type="text" placeholder="US">
-                      </li>
-                      <li class="filter list-group-item">
-                        <label for="shape">Enter a Shape</label>
-                        <input class="form-control" id="shape" type="text" placeholder="Circle">
-                      </li> 
-                    </ul>
-                  </div>
-                  <button id="filter-btn" type="button" class="btn btn-default">Filter Table</button>
-                </form>
-              </div>
-            </div>
-          </aside>
-        </div>
-        <div class="col-md-10">
+        <div class="col-md-12">
           <div id="table-area" class="">
             <table id="ufo-table" class="table table-striped table-light">
               <thead>

@@ -1,69 +1,89 @@
-// from data.js
 var tableData = data;
+console.log("Print fresh tableData, all lowercase");
+console.log(tableData);
 
 // Select the button
 var filterBtn = d3.select("#filter-btn");
+var resetBtn = d3.select("#reset-btn")
+
+// Reset form and data on page
+resetBtn.on("click", function () {
+    this.form.reset(); 
+    window.location.reload();
+});
 
 // Form click handler
 
 filterBtn.on("click", function () {
+
+    // Clear previous input
+    var dateValue = "";
+    var cityValue = "";
+    var stateValue = "";
+    var countryValue = "";
+    var shapeValue = "";
+    var results = "";
+
+    console.log("Print empty results set");
+    console.log(results); // print empty results
+
+    // import full, fresh dataset
+    results = tableData; // load "fresh" tableData into results set
+    console.log("Print fresh tabledata again, till all lowercase");
+    console.log(tableData); // print "fresh" tableData
+    console.log("Print fresh results data now, all lowercase (inherited from tabledata)");
+    console.log(results); // print "fresh" results (same as tableData)
+    
     // Get the user input
-    var datetime = d3.select("#datetime");
-    var dateValue = datetime.property("value");
+    var datetimeData = d3.select("#datetime");
+    dateValue = datetimeData.property("value");
 
-    var city = d3.select("#city");
-    var cityValue = city.property("value").toLowerCase();
+    var cityData = d3.select("#city");
+    cityValue = cityData.property("value").toLowerCase();
 
-    var state = d3.select("#state");
-    var stateValue = state.property("value").toLowerCase();
+    var stateData = d3.select("#state");
+    stateValue = stateData.property("value").toLowerCase();
 
-    var country = d3.select("#country");
-    var countryValue = country.property("value").toLowerCase();
+    var countryData = d3.select("#country");
+    countryValue = countryData.property("value").toLowerCase();
 
-    var shape = d3.select("#shape");
-    var shapeValue = shape.property("value").toLowerCase();
+    var shapeData = d3.select("#shape");
+    shapeValue = shapeData.property("value").toLowerCase();
 
     // Create a filter based in user input
-    if (!dateValue == "") {
-        var filteredSet = tableData.filter(sighting => sighting.datetime === dateValue);
-    } 
+    var filterList = [dateValue, cityValue, stateValue, countryValue, shapeValue];
+    var attrList = ["datetime", "city", "state", "country", "shape"];
 
-    if (!cityValue == "" && !dateValue == "") {
-        filteredSet = filteredSet.filter(sighting => sighting.city === cityValue);
-    } else if (!cityValue == "") {
-        var filteredSet = tableData.filter(sighting => sighting.city === cityValue);
+    for (i = 0; i < filterList.length; i++) {
+        if (filterList[i]) {
+            att = attrList[i];
+            filter = filterList[i];
+            results = results.filter(sighting => sighting[att] === filter);
+        }
     }
-
-    if (!stateValue == "" && ((!cityValue == "" || !dateValue == ""))) {
-        var filteredSet = filteredSet.filter(sighting => sighting.state === stateValue);
-    } else if (!stateValue == "") {
-        var filteredSet = tableData.filter(sighting => sighting.state === stateValue);
-    }
-
-    if (!countryValue == "" && ((!cityValue == "" || !dateValue == "" || !stateValue == ""))) {
-        var filteredSet = filteredSet.filter(sighting => sighting.country === countryValue);
-    } else if (!countryValue == "") {
-        var filteredSet = tableData.filter(sighting => sighting.country === countryValue);
-    }
-    
-    if (!shapeValue == "" && ((!cityValue == "" || !dateValue == "" || !stateValue == "" || !countryValue == ""))) {
-        var filteredSet = tableData.filter(sighting => sighting.shape === shapeValue);
-    } else if (!shapeValue == "") {
-        var filteredSet = tableData.filter(sighting => sighting.shape === shapeValue);
-    }
+    console.log("Print any user-entered values for filtering, all lowercase");
+    console.log(dateValue, cityValue, stateValue, countryValue, shapeValue); // log values passed to filters
+    console.log("Print filtered results, should still be all lowercase");
+    console.log(results); // log filtered results
 
     // Clear existing html in table
     var table = d3.select("tbody");
     table.html("");
 
     // Convert state and country str to uppercase
-    filteredSet.forEach(function(sighting) {
-        sighting.state = sighting.state.toUpperCase();
-        sighting.country = sighting.country.toUpperCase();
-    });
 
-    // Convert city and shape data to title case
-    filteredSet.forEach(function(sighting) {
+    function convertUC(convertedData) {
+        convertedData.forEach(function(sighting) {
+            sighting.state = sighting.state.toUpperCase();
+            sighting.country = sighting.country.toUpperCase();
+        });
+    }
+    convertUC(results); // convert state and country fields of filtered results to uppercase
+    console.log("Print results with state and country converted to UC");
+    console.log(results);
+
+    // Convert city and shape data to title case from filtered results
+    results.forEach(function(sighting) {
         // Adapted from https://www.freecodecamp.org/news/three-ways-to-title-case-a-sentence-in-javascript-676a9175eb27/
         // city
         var str = sighting.city.toLowerCase();
@@ -86,25 +106,13 @@ filterBtn.on("click", function () {
         sighting.shape = shape;
     });
 
-    // Fix weird characters in description
-    filteredSet.forEach(function(sighting) {
-        var str = sighting.comments;
-        if (str.includes("&#44")) {
-            sighting.comments = str.replace("&#44",',');
-        }
-        if (str.includes("&#33")) {
-            sighting.comments = str.replace("&#33",'!');
-        }
-        if (str.includes("&#39")) {
-            sighting.comments = str.replace("&#39",'\'');
-        }
-    });
+    console.log("Print results with city and shape now converted to title case");
 
-    // Print each result in dateSet to table
-    filteredSet.forEach((sighting) => {
-        var row = table.append("tr");
+    // Print each result in results to table
+    results.forEach((sighting) => {
+        let row = table.append("tr");
         Object.entries(sighting).forEach(([key, value]) => {
-            var cell = row.append("td");
+            let cell = row.append("td");
             cell.text(value);
         });
     });
