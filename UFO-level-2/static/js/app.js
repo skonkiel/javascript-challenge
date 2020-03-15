@@ -86,6 +86,20 @@ filterBtn.on("click", function () {
         sighting.shape = shape;
     });
 
+    // Fix weird characters in description
+    filteredSet.forEach(function(sighting) {
+        var str = sighting.comments;
+        if (str.includes("&#44")) {
+            sighting.comments = str.replace("&#44",',');
+        }
+        if (str.includes("&#33")) {
+            sighting.comments = str.replace("&#33",'!');
+        }
+        if (str.includes("&#39")) {
+            sighting.comments = str.replace("&#39",'\'');
+        }
+    });
+
     // Print each result in dateSet to table
     filteredSet.forEach((sighting) => {
         var row = table.append("tr");

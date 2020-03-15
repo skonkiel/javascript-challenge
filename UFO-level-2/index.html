@@ -5,7 +5,8 @@
   <meta charset="utf-8">
   <title>UFO Finder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
   <link rel="stylesheet" href="static/css/style.css">
 </head>
@@ -21,11 +22,53 @@
         </div>
       </div>
     </nav>
-    <div class="hero text-center">
-      <h1>UFO Sightings</h1>
-      <p>The Truth is Out There</p>
+    <div class="container head">
+      <h1>Find UFO Sightings</h1>
     </div>
     <div class="container">
+      <!-- Add a filter at top of page -->
+      <div class="row margin-top-50">
+        <div class="col-md-12">
+          <form>
+              <div class="form-row">
+              <ul class="list-group" id="filters">
+                <div class="col">
+                <li class="filter list-group-item">
+                  <label for="date">Enter a Date</label>
+                  <input class="form-control" id="datetime" type="text" placeholder="1/11/2010">
+                </li>
+              </div>
+              <div class="col">
+                <li class="filter list-group-item">
+                  <label for="city">Enter a City</label>
+                  <input class="form-control" id="city" type="text" placeholder="Fresno">
+                </li>
+              </div>
+              <div class="col">
+                <li class="filter list-group-item">
+                  <label for="state">Enter a State</label>
+                  <input class="form-control" id="state" type="text" placeholder="CA">
+                </li>
+              </div> 
+              <div class="col">
+                <li class="filter list-group-item">
+                  <label for="country">Enter a Country</label>
+                  <input class="form-control" id="country" type="text" placeholder="US">
+                </li>
+              </div>
+              <div class="col">
+                <li class="filter list-group-item">
+                  <label for="shape">Enter a Shape</label>
+                  <input class="form-control" id="shape" type="text" placeholder="Circle">
+                </li> 
+              </div>
+              </ul>
+              </div>
+            
+            <button id="filter-btn" type="button" class="btn btn-default">Filter Table</button>
+          </form>
+        </div>
+      </div>
       <div class="row margin-top-50">
         <div class="col-md-2">
           <aside class="filters">
@@ -66,7 +109,7 @@
         </div>
         <div class="col-md-10">
           <div id="table-area" class="">
-            <table id="ufo-table" class="table table-striped">
+            <table id="ufo-table" class="table table-striped table-light">
               <thead>
                 <tr>
                   <th class="table-head">Date</th>
@@ -85,7 +128,7 @@
       </div>
     </div>
     <footer class="footer">
-      <span class="bottom">UFO Sightings</span>
+      <span class="bottom">Built by <a href="http://github.com/skonkiel">skonkiel</a> 🐻 Powered by 👽</span>
     </footer>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
