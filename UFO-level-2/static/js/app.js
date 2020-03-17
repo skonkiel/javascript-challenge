@@ -16,23 +16,10 @@ resetBtn.on("click", function () {
 
 filterBtn.on("click", function () {
 
-    // Clear previous input
-    var dateValue = "";
-    var cityValue = "";
-    var stateValue = "";
-    var countryValue = "";
-    var shapeValue = "";
-    var results = "";
-
-    console.log("Print empty results set");
-    console.log(results); // print empty results
-
     // import full, fresh dataset
-    results = tableData; // load "fresh" tableData into results set
-    console.log("Print fresh tabledata again, till all lowercase");
-    console.log(tableData); // print "fresh" tableData
-    console.log("Print fresh results data now, all lowercase (inherited from tabledata)");
-    console.log(results); // print "fresh" results (same as tableData)
+    // results = {...tableData}; // this doesn't work, not sure why
+    results = JSON.parse(JSON.stringify( tableData ));
+    // JSON solution found on https://dev.to/rsschouwenaar/how-to-make-a-real-copy-of-a-javascript-array-with-objects-without-a-reference-5md
     
     // Get the user input
     var datetimeData = d3.select("#datetime");
@@ -61,10 +48,6 @@ filterBtn.on("click", function () {
             results = results.filter(sighting => sighting[att] === filter);
         }
     }
-    console.log("Print any user-entered values for filtering, all lowercase");
-    console.log(dateValue, cityValue, stateValue, countryValue, shapeValue); // log values passed to filters
-    console.log("Print filtered results, should still be all lowercase");
-    console.log(results); // log filtered results
 
     // Clear existing html in table
     var table = d3.select("tbody");
@@ -79,8 +62,6 @@ filterBtn.on("click", function () {
         });
     }
     convertUC(results); // convert state and country fields of filtered results to uppercase
-    console.log("Print results with state and country converted to UC");
-    console.log(results);
 
     // Convert city and shape data to title case from filtered results
     results.forEach(function(sighting) {
@@ -105,8 +86,6 @@ filterBtn.on("click", function () {
         var shape = str.join(" ");
         sighting.shape = shape;
     });
-
-    console.log("Print results with city and shape now converted to title case");
 
     // Print each result in results to table
     results.forEach((sighting) => {
