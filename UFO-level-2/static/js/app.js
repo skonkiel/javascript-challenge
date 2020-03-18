@@ -12,6 +12,10 @@ resetBtn.on("click", function () {
     window.location.reload();
 });
 
+// hide the item when no data in search results
+var tableHead = d3.select("table");
+tableHead.classed("toggle-off", true);
+
 // Form click handler
 
 filterBtn.on("click", function () {
@@ -87,12 +91,23 @@ filterBtn.on("click", function () {
         sighting.shape = shape;
     });
 
-    // Print each result in results to table
-    results.forEach((sighting) => {
-        let row = table.append("tr");
-        Object.entries(sighting).forEach(([key, value]) => {
-            let cell = row.append("td");
-            cell.text(value);
+    console.log(results);
+
+    if (results.length == 0) {
+        return;
+    }
+
+    else if (results) {
+        // Show item when search results
+        tableHead.classed("toggle-on", true);
+        // Print each result in results to table
+        results.forEach((sighting) => {
+            let row = table.append("tr");
+            Object.entries(sighting).forEach(([key, value]) => {
+                let cell = row.append("td");
+                cell.text(value);
+            });
         });
-    });
+    }
+
 });
