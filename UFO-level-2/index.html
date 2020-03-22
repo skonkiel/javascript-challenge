@@ -17,25 +17,33 @@
 
 <body>
   <div class="wrapper">
-    <nav class="navbar navbar-default navbar-expand-md">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="index.html">UFO Sightings
-            <img class="nav-ufo" src="static/images/ufo.svg">
-          </a>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <div class="navbar-nav">
-              <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-              <a class="nav-item nav-link" href="analysis.html">Analysis</a>
-            </div>
-          </div>
-        </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">UFO Sightings</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./analysis.html">Analysis</a>
+          </li>
+        </ul>
       </div>
     </nav>
     <div class="container head">
       <h1>Find UFO Sightings</h1>
     </div>
-    <div class="container">
+    <div class="container mt-5">
+      <p>
+        Welcome, scientists! Here we have collected data on UFO sightings in North
+        America, from January 1 - 13, 2010. You can search sightings below, or 
+        <a href="analysis.html">visualize trends</a> on our Analysis page. 
+      </p>
+    </div>
+    <div class="container mt-5">
       <!-- Add a filter at top of page -->
       <div class="row margin-top-50">
         <div class="col-md-12">

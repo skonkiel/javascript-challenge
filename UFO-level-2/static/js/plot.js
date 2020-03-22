@@ -1,3 +1,5 @@
+d3.json("data.json").then((data) => {
+
 // State analysis
 var states = data.map(sighting => sighting.state);
 states = states.map(state => state.toUpperCase());
@@ -93,3 +95,5 @@ var layout2 = {
 
 // Plot the chart to a div tag with id "plot"
 Plotly.newPlot("plot2", data2, layout2);
+
+});
